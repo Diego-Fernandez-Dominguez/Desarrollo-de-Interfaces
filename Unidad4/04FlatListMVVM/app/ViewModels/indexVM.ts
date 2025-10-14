@@ -1,22 +1,34 @@
 import { Persona } from "../Models/Entities/Persona";
-import { getPersonas } from "../Models/Data/RepositoryPersona";
+import { RepositoryPersona } from "../Models/Data/RepositoryPersona";
 
 export class IndexVM {
 
-  public obtenerPersonas(): { id: string; nombreCompleto: string }[] {
-    return getPersonas().map(persona => ({
-      id: persona.getId(),
-      nombreCompleto: `${persona.getNombre()} ${persona.getApellido()}`
-    }));
-  }
+   private personas: Persona[] = [];
+    private personaSeleccionada : Persona | null = null;
 
-  public obtenerDatosPersona(id: string): { id: string; nombre: string; apellido: string } | null {
-    const persona = getPersonas().find(p => p.getId() === id);
-    if (!persona) return null;
-    return {
-      id: persona.getId(),
-      nombre: persona.getNombre(),
-      apellido: persona.getApellido()
-    };
-  }
+    constructor() {
+        this.personaSeleccionada
+    }
+
+    public get Personas(): Persona[] {
+        const repo = new RepositoryPersona();
+        this.personas = repo.Personas;
+        return this.personas;
+    }
+
+    public get PersonaSeleccionada(): Persona | null {
+        return this.personaSeleccionada;
+    }
+    public set PersonaSeleccionada(value: Persona | null){
+        this.personaSeleccionada = value;
+        this.personaPress();
+    }
+
+    private personaPress(): void {
+
+        if(this.personaSeleccionada != null) {
+        alert(`has clicado en :  ${this.personaSeleccionada?.Nombre} ${this.personaSeleccionada?.Apellido}`);
+    }
+}
+
 }
