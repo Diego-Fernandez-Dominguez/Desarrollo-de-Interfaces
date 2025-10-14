@@ -11,7 +11,7 @@ export default function Index() {
     <Pressable
       onPress={() => setPersonaSeleccionadaId(item.id)}
       style={({ pressed }) => [
-        styles.item,
+        styles.contenedoresDePersonasJijiji,
         pressed && styles.itemPressed
       ]}
     >
@@ -36,7 +36,7 @@ export default function Index() {
             Apellido: {datos.apellido}
           </Text>
         ) : (
-          <Text style={styles.textoDeLoDeAbajo}>Selecciona una persona</Text>
+          <Text style={styles.textoDeLoDeAbajo}>Hazle cosquillas a un nombre:</Text>
         )}
       </View>
     </View>
@@ -47,35 +47,35 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 12,
-    backgroundColor: "#fff3e0",
+    backgroundColor: "#fae8e0ff",
   },
-  item: {
-    paddingVertical: 12,
-    paddingHorizontal: 12,
-    borderBottomWidth: 2,
-    borderBottomColor: "#ffb74d",
-    backgroundColor: "#ffffff",
-    marginVertical: 6,
+  contenedoresDePersonasJijiji: {
+    backgroundColor: '#fff',
+    padding: 16,
+    marginBottom: 12,
     borderRadius: 8,
+    borderColor: '#d17104ff',
+    borderWidth: 2
   },
   itemPressed: {
     backgroundColor: "#ffe0b2",
   },
   textito: {
     fontSize: 18,
-    color: "#ef6c00"
+    color: "#ec8129ff"
+    
   },
   loDeAbajo: {
     marginTop: 28,
     padding: 18,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#ec8129ff",
     borderRadius: 12,
     elevation: 3,
-    borderColor: "#ffb74d",
+    borderColor: "#d17104ff",
     borderWidth: 1,
   },
   textoDeLoDeAbajo: {
-    fontSize: 17,
-    color: "#e65100",
+    fontSize: 18,
+    color: "#ffff",
   },
 });
