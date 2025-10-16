@@ -1,16 +1,14 @@
 import { Pressable, Text, View } from "react-native";
-import BotonTopeGuayProps from "../components/BotonTopeGuay";
+import BotonTopeGuay from "../components/BotonTopeGuay";
 
 export default function Index() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+    <View>
+      <BotonTopeGuay texto="No hago nada jisjisjis" />
+      <BotonTopeGuay texto="Soy un pressable, no un boton" />
+      <BotonTopeGuay texto="Me da igual" />
+      <BotonTopeGuay texto="Estoy delirando" />
+
     </View>
   );
 }
