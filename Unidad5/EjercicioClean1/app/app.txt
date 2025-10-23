@@ -1,0 +1,22 @@
+app
+	Domanin
+		UseCases
+			RecievePeopleList.ts
+		Entities
+			Persona.ts
+		Interfaces
+			IgetPersonById
+	Data
+		Repositories
+			RepositoryPersona.ts 
+
+	Presentation
+		ViewModels
+			indexVM.ts
+		Model
+		Views
+			index.ts
+
+	Core
+		container.ts
+		types.ts
