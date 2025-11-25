@@ -17,13 +17,13 @@ export function LaCartaDeFuera({children
 
 const styles = StyleSheet.create({
   card: {
-    width: '75%',
+    width: '40%',
     height: '60%',
     backgroundColor: '#fff',
     borderRadius: 15,
     padding: 10,
     margin: 10,
-    justifyContent: 'center',   // centra contenido
-    alignItems: 'center',       // centra contenido
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 });
