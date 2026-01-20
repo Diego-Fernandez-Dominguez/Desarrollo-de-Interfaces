@@ -1,0 +1,34 @@
+src/
+    container/
+        container.ts
+        types.ts
+
+    domain/
+        entities/
+            clsMensajeUsuario.ts
+                + nombre: string {get}
+                + mensaje: string {get}
+                clsMensajeUsuario(nombre, mensaje)
+        
+        interfaces/
+            IMensajeUsuarioUseCase.ts
+                + crearMensaje(): clsMensaje
+                + validarMensaje(): bool
+                + formatearMensaje(): clsMensaje
+
+        useCases/
+            MensajeUsuarioUseCase.ts implements IMensajeUsuarioUseCase.ts
+                + crearMensaje(): clsMensaje
+                + validarMensaje(): bool
+                + formatearMensaje(): clsMensaje
+
+    presentation/
+        viewmodels/
+            ChatGrupalVM.ts
+                + conexion : bool {get}
+                + apretarBoton() void
+                + getMensaje(): clsMensajeUsuario
+                + getListaMensajes(): List<clsMensajeUsuario>
+                + comenzarConexion()
+        views/
+            ChatGrupalView.tsx
