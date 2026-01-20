@@ -1,0 +1,8 @@
+C:\Users\diego.fernandez\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\Ejercicio1\Ejercicio1\obj\Release\net8.0\PubTmp\Out\Ejercicio1.exe
+C:\Users\diego.fernandez\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\Ejercicio1\Ejercicio1\obj\Release\net8.0\PubTmp\Out\appsettings.Development.json
+C:\Users\diego.fernandez\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\Ejercicio1\Ejercicio1\obj\Release\net8.0\PubTmp\Out\appsettings.json
+C:\Users\diego.fernandez\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\Ejercicio1\Ejercicio1\obj\Release\net8.0\PubTmp\Out\libman.json
+C:\Users\diego.fernandez\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\Ejercicio1\Ejercicio1\obj\Release\net8.0\PubTmp\Out\Ejercicio1.dll
+C:\Users\diego.fernandez\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\Ejercicio1\Ejercicio1\obj\Release\net8.0\PubTmp\Out\Ejercicio1.deps.json
+C:\Users\diego.fernandez\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\Ejercicio1\Ejercicio1\obj\Release\net8.0\PubTmp\Out\Ejercicio1.runtimeconfig.json
+C:\Users\diego.fernandez\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\Ejercicio1\Ejercicio1\obj\Release\net8.0\PubTmp\Out\Ejercicio1.pdb
