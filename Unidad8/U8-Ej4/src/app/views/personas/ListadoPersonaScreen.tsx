@@ -3,10 +3,10 @@ import { View, Text, FlatList, TouchableOpacity, TextInput, StyleSheet, Alert } 
 import { observer } from 'mobx-react-lite';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { container } from '../../../../di/container';
-import { DITypes } from '../../../../di/types';
-import { PersonasViewModel } from '../../../../presentation/viewmodels/persona/PersonasViewModel';
-import { PersonaListItem } from '../../../../presentation/components/personas/PersonaListItem';
+import { container } from '../../../di/container';
+import { DITypes } from '../../../di/types';
+import { PersonasViewModel } from '../../../presentation/viewmodels/persona/PersonasViewModel';
+import { PersonaListItem } from '../../../presentation/components/personas/PersonaListItem';
 
 type PersonasStackParamList = {
   ListadoPersonas: undefined;
@@ -158,3 +158,5 @@ const styles = StyleSheet.create({
     color: '#7f8c8d',
   },
 });
+
+export default ListadoPersonasScreen;

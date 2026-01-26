@@ -2,9 +2,7 @@ import { IDepartamentoRepository } from '../../domain/interfaces/repositories/ID
 import { clsDepartamento } from '../../domain/entities/clsDepartamento';
 import { DepartamentoDTO } from '../../domain/dtos/DepartamentoDTO';
 import { APIConnection } from '../datasources/api/APIConnection';
-import { injectable, inject } from 'inversify';
 
-@injectable()
 export class DepartamentoRepository implements IDepartamentoRepository {
   private api: APIConnection;
 
@@ -13,12 +11,12 @@ export class DepartamentoRepository implements IDepartamentoRepository {
   }
 
   async getAll(): Promise<DepartamentoDTO[]> {
-    return await this.api.get<DepartamentoDTO[]>('/departamentos');
+    return await this.api.get<DepartamentoDTO[]>('/api/departamentos');
   }
 
   async getById(id: number): Promise<DepartamentoDTO | null> {
     try {
-      return await this.api.get<DepartamentoDTO>(`/departamentos/${id}`);
+      return await this.api.get<DepartamentoDTO>(`/api/departamentos/${id}`);
     } catch (error) {
       return null;
     }
@@ -28,7 +26,7 @@ export class DepartamentoRepository implements IDepartamentoRepository {
     const data = {
       nombre: departamento.nombre,
     };
-    return await this.api.post<DepartamentoDTO>('/departamentos', data);
+    return await this.api.post<DepartamentoDTO>('/api/departamentos', data);
   }
 
   async update(departamento: clsDepartamento): Promise<DepartamentoDTO> {
@@ -36,10 +34,10 @@ export class DepartamentoRepository implements IDepartamentoRepository {
       id: departamento.id,
       nombre: departamento.nombre,
     };
-    return await this.api.put<DepartamentoDTO>(`/departamentos/${departamento.id}`, data);
+    return await this.api.put<DepartamentoDTO>(`/api/departamentos/${departamento.id}`, data);
   }
 
   async delete(id: number): Promise<boolean> {
-    return await this.api.delete(`/departamentos/${id}`);
+    return await this.api.delete(`/api/departamentos/${id}`);
   }
 }

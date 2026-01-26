@@ -5,7 +5,7 @@ import { DITypes } from '@/src/di/types';
 
 @injectable()
 export class DeleteDepartamentoUseCase implements IDeleteDepartamentoUseCase {
-  constructor(@inject(DITypes.PersonaRepository)private departamentoRepository: IDepartamentoRepository) {}
+  constructor(@inject(DITypes.DepartamentoRepository)private departamentoRepository: IDepartamentoRepository) {}
 
   async execute(id: number): Promise<boolean> {
     return await this.departamentoRepository.delete(id);

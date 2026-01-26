@@ -4,10 +4,10 @@ import { observer } from 'mobx-react-lite';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
-import { container } from '../../../../di/container';
-import { DITypes } from '../../../../di/types';
-import { DepartamentosViewModel } from '../../../../presentation/viewmodels/departamento/DepartamentosViewModel';
-import { clsDepartamento } from '../../../../domain/entities/clsDepartamento';
+import { container } from '../../../di/container';
+import { DITypes } from '../../../di/types';
+import { DepartamentosViewModel } from '../../../presentation/viewmodels/departamento/DepartamentosViewModel';
+import { clsDepartamento } from '../../../domain/entities/clsDepartamento';
 
 type DepartamentosStackParamList = {
   ListadoDepartamentos: undefined;
@@ -150,3 +150,5 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
+
+export default EditarInsertarDepartamentoScreen;

@@ -8,7 +8,7 @@ import { DITypes } from '@/src/di/types';
 
 @injectable()
 export class AddDepartamentoUseCase implements IAddDepartamentoUseCase {
-  constructor(@inject(DITypes.PersonaRepository)private departamentoRepository: IDepartamentoRepository) {}
+  constructor(@inject(DITypes.DepartamentoRepository)private departamentoRepository: IDepartamentoRepository) {}
 
   async execute(departamento: clsDepartamento): Promise<DepartamentoDTO> {
     return await this.departamentoRepository.add(departamento);

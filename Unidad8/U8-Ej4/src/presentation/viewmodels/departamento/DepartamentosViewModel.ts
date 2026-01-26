@@ -59,9 +59,11 @@ export class DepartamentosViewModel {
     this.error = null;
     try {
       const departamentosDTO = await this.getDepartamentosUseCase.execute();
+
       runInAction(() => {
         this.departamentos = departamentosDTO.map(mapDepartamentoDTOToUI);
         this.loading = false;
+        
       });
     } catch (err) {
       runInAction(() => {

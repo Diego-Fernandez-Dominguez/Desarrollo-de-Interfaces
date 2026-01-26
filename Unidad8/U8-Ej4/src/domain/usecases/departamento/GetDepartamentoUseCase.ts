@@ -6,7 +6,7 @@ import { DITypes } from '@/src/di/types';
 
 @injectable()
 export class GetDepartamentosUseCase implements IGetDepartamentosUseCase {
-  constructor(@inject(DITypes.PersonaRepository)private departamentoRepository: IDepartamentoRepository) {}
+  constructor(@inject(DITypes.DepartamentoRepository)private departamentoRepository: IDepartamentoRepository) {}
 
   async execute(): Promise<DepartamentoDTO[]> {
     return await this.departamentoRepository.getAll();

@@ -13,12 +13,12 @@ export class PersonaRepository implements IPersonaRepository {
   }
 
   async getAll(): Promise<PersonaDTO[]> {
-    return await this.api.get<PersonaDTO[]>('/personas');
+    return await this.api.get<PersonaDTO[]>('/api/personas');
   }
 
   async getById(id: number): Promise<PersonaDTO | null> {
     try {
-      return await this.api.get<PersonaDTO>(`/personas/${id}`);
+      return await this.api.get<PersonaDTO>(`/api/personas/${id}`);
     } catch (error) {
       return null;
     }
@@ -32,7 +32,7 @@ export class PersonaRepository implements IPersonaRepository {
       idDepartamento: persona.idDepartamento,
       foto: persona.foto,
     };
-    return await this.api.post<PersonaDTO>('/personas', data);
+    return await this.api.post<PersonaDTO>('/api/personas', data);
   }
 
   async update(persona: clsPersona): Promise<PersonaDTO> {
@@ -44,10 +44,10 @@ export class PersonaRepository implements IPersonaRepository {
       idDepartamento: persona.idDepartamento,
       foto: persona.foto,
     };
-    return await this.api.put<PersonaDTO>(`/personas/${persona.id}`, data);
+    return await this.api.put<PersonaDTO>(`/api/personas/${persona.id}`, data);
   }
 
   async delete(id: number): Promise<boolean> {
-    return await this.api.delete(`/personas/${id}`);
+    return await this.api.delete(`/api/personas/${id}`);
   }
 }

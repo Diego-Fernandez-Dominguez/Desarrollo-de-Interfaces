@@ -1,10 +1,11 @@
+// src/app/_layout.tsx
 import { Drawer } from 'expo-router/drawer';
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import 'reflect-metadata';
 
-export default function Layout() {
+export default function RootLayout() {
   return (
     <GestureHandlerRootView style={styles.container}>
       <Drawer
@@ -32,38 +33,32 @@ export default function Layout() {
         }}
       >
         <Drawer.Screen
-  name="index"
-  options={{
-    drawerLabel: '🏠 Inicio',
-    title: 'Gestión de Personal',
-  }}
-/>
+          name="index"
+          options={{
+            drawerLabel: 'Inicio',
+            title: 'Gestión de Personal',
+            drawerIcon: () => <Text style={styles.icon}>🏠</Text>,
+          }}
+        />
 
-<Drawer.Screen
-  name="/personas/ListadoPersonasScreen.tsx"
-  options={{
-    drawerLabel: 'Personas',
-    title: 'Personas',
-  }}
-/>
+        {/* ⚠️ IMPORTANTE: Usa la ruta exacta según tu estructura */}
+        <Drawer.Screen
+          name="views/personas/ListadoPersonaScreen"
+          options={{
+            drawerLabel: 'Personas',
+            title: 'Gestión de Personas',
+            drawerIcon: () => <Text style={styles.icon}>👥</Text>,
+          }}
+        />
 
-<Drawer.Screen
-  name="personas/ListadoDepartamentosScreen.tsx"
-  options={{
-    drawerLabel: 'Departamentos',
-    title: 'Departamentos',
-  }}
-/>
-
-<Drawer.Screen
-  name="app/views/WelcomeScreen.tsx"
-  options={{
-    drawerLabel: 'Bienvenida',
-    title: 'Bienvenida',
-    drawerItemStyle: { display: 'none' },
-  }}
-/>
-
+        <Drawer.Screen
+          name="views/departamentos/ListadoDepartamentosScreen"
+          options={{
+            drawerLabel: 'Departamentos',
+            title: 'Gestión de Departamentos',
+            drawerIcon: () => <Text style={styles.icon}>🏢</Text>,
+          }}
+        />
       </Drawer>
     </GestureHandlerRootView>
   );
@@ -73,5 +68,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#0f0f23',
+  },
+  icon: {
+    fontSize: 20,
   },
 });

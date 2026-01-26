@@ -3,10 +3,10 @@ import { View, Text, FlatList, TouchableOpacity, TextInput, StyleSheet, Alert } 
 import { observer } from 'mobx-react-lite';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { container } from '../../../../di/container';
-import { DITypes } from '../../../../di/types';
-import { DepartamentosViewModel } from '../../../../presentation/viewmodels/departamento/DepartamentosViewModel';
-import { DepartamentoListItem } from '../../../../presentation/components/departamentos/DepartamentoListItem';
+import { container } from '../../../di/container';
+import { DITypes } from '../../../di/types';
+import { DepartamentosViewModel } from '../../../presentation/viewmodels/departamento/DepartamentosViewModel';
+import { DepartamentoListItem } from '../../../presentation/components/departamentos/DepartamentoListItem';
 
 type DepartamentosStackParamList = {
   ListadoDepartamentos: undefined;
@@ -158,3 +158,5 @@ const styles = StyleSheet.create({
     color: '#7f8c8d',
   },
 });
+
+export default ListadoDepartamentosScreen;

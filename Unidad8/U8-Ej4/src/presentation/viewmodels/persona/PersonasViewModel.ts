@@ -49,7 +49,7 @@ export class PersonasViewModel {
 
   get personasFiltradas(): PersonaUIModel[] {
     if (!this.searchQuery) return this.personas;
-    
+      
     const query = this.searchQuery.toLowerCase();
     return this.personas.filter(p => 
       p.nombre.toLowerCase().includes(query) ||
@@ -57,6 +57,7 @@ export class PersonasViewModel {
       p.nombreDepartamento.toLowerCase().includes(query)
     );
   }
+
 
   setSearchQuery(query: string) {
     this.searchQuery = query;

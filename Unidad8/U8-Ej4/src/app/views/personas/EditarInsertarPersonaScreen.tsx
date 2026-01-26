@@ -4,11 +4,11 @@ import { observer } from 'mobx-react-lite';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
-import { container } from '../../../../di/container';
-import { DITypes } from '../../../../di/types';
-import { PersonasViewModel } from '../../../../presentation/viewmodels/persona/PersonasViewModel';
-import { DepartamentosViewModel } from '../../../../presentation/viewmodels/departamento/DepartamentosViewModel';
-import { clsPersona } from '../../../../domain/entities/clsPersona';
+import { container } from '../../../di/container';
+import { DITypes } from '../../../di/types';
+import { PersonasViewModel } from '../../../presentation/viewmodels/persona/PersonasViewModel';
+import { DepartamentosViewModel } from '../../../presentation/viewmodels/departamento/DepartamentosViewModel';
+import { clsPersona } from '../../../domain/entities/clsPersona';
 
 type PersonasStackParamList = {
   ListadoPersonas: undefined;
@@ -246,3 +246,5 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
+
+export default EditarInsertarPersonaScreen;
