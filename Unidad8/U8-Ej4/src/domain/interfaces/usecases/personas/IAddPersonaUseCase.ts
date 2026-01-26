@@ -1,5 +1,6 @@
-import { clsPersona } from "../../../entities/clsPersona";
+import { clsPersona } from '../../../entities/clsPersona';
+import { PersonaDTO } from '../../../dtos/PersonaDTO';
 
 export interface IAddPersonaUseCase {
-  execute(persona: clsPersona): Promise<void>;
+  execute(persona: clsPersona): Promise<PersonaDTO>;
 }

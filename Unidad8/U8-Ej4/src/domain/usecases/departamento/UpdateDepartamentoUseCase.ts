@@ -1,10 +1,15 @@
-import { IDepartamentoRepository } from "../../interfaces/repositories/IDepartamentoRepository";
-import { clsDepartamento } from "../../entities/clsDepartamento";
+import { IUpdateDepartamentoUseCase } from '../../interfaces/usecases/departamentos/IUpdateDepartamentoUseCase';
+import { IDepartamentoRepository } from '../../interfaces/repositories/IDepartamentoRepository';
+import { clsDepartamento } from '../../entities/clsDepartamento';
+import { DepartamentoDTO } from '../../dtos/DepartamentoDTO';
+import { injectable, inject } from 'inversify';
+import { DITypes } from '@/src/di/types';
 
-export class UpdateDepartamentoUseCase {
-  constructor(private repo: IDepartamentoRepository) {}
+@injectable()
+export class UpdateDepartamentoUseCase implements IUpdateDepartamentoUseCase {
+  constructor(@inject(DITypes.PersonaRepository)private departamentoRepository: IDepartamentoRepository) {}
 
-  async execute(dep: clsDepartamento): Promise<void> {
-    await this.repo.updateDepartamento(dep);
+  async execute(departamento: clsDepartamento): Promise<DepartamentoDTO> {
+    return await this.departamentoRepository.update(departamento);
   }
 }

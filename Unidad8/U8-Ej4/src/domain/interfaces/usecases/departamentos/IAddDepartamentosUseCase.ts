@@ -1,5 +1,6 @@
-import { clsDepartamento } from "../../../entities/clsDepartamento";
+import { clsDepartamento } from '../../../entities/clsDepartamento';
+import { DepartamentoDTO } from '../../../dtos/DepartamentoDTO';
 
 export interface IAddDepartamentoUseCase {
-  execute(dep: clsDepartamento): Promise<void>;
+  execute(departamento: clsDepartamento): Promise<DepartamentoDTO>;
 }

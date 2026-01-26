@@ -1,16 +1,25 @@
-// clsDepartamento.ts
 export class clsDepartamento {
   private _id: number;
   private _nombre: string;
 
-  constructor(id: number, nombre: string) {
+  constructor(id: number = 0, nombre: string = '') {
     this._id = id;
     this._nombre = nombre;
   }
 
-  get id() { return this._id; }
-  set id(value: number) { this._id = value; }
+  get id(): number {
+    return this._id;
+  }
 
-  get nombre() { return this._nombre; }
-  set nombre(value: string) { this._nombre = value; }
+  set id(value: number) {
+    this._id = value;
+  }
+
+  get nombre(): string {
+    return this._nombre;
+  }
+
+  set nombre(value: string) {
+    this._nombre = value;
+  }
 }

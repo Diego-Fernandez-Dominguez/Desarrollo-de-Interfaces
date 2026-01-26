@@ -1,50 +1,53 @@
-// data/repositories/PersonaRepository.ts
 import { IPersonaRepository } from '../../domain/interfaces/repositories/IPersonaRepository';
 import { clsPersona } from '../../domain/entities/clsPersona';
+import { PersonaDTO } from '../../domain/dtos/PersonaDTO';
 import { APIConnection } from '../datasources/api/APIConnection';
+import { injectable, inject } from 'inversify';
 
+@injectable()
 export class PersonaRepository implements IPersonaRepository {
-  async getPersonas(): Promise<clsPersona[]> {
-    const data = await APIConnection.get('/personas');
+  private api: APIConnection;
 
-    return data.map((dto: any) => new clsPersona(
-      dto.id,
-      dto.nombre,
-      dto.apellido,
-      new Date(dto.fechaNacimiento)
-    ));
+  constructor() {
+    this.api = APIConnection.getInstance();
   }
 
-  async getPersonaById(id: number): Promise<clsPersona> {
-    const dto = await APIConnection.get(`/personas/${id}`);
-
-    return new clsPersona(
-      dto.id,
-      dto.nombre,
-      dto.apellido,
-      new Date(dto.fechaNacimiento)
-    );
+  async getAll(): Promise<PersonaDTO[]> {
+    return await this.api.get<PersonaDTO[]>('/personas');
   }
 
-  async addPersona(persona: clsPersona): Promise<void> {
-    await APIConnection.post('/personas', {
+  async getById(id: number): Promise<PersonaDTO | null> {
+    try {
+      return await this.api.get<PersonaDTO>(`/personas/${id}`);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  async add(persona: clsPersona): Promise<PersonaDTO> {
+    const data = {
+      nombre: persona.nombre,
+      apellido: persona.apellido,
+      fechaNacimiento: persona.fechaNacimiento.toISOString(),
+      idDepartamento: persona.idDepartamento,
+      foto: persona.foto,
+    };
+    return await this.api.post<PersonaDTO>('/personas', data);
+  }
+
+  async update(persona: clsPersona): Promise<PersonaDTO> {
+    const data = {
       id: persona.id,
       nombre: persona.nombre,
       apellido: persona.apellido,
-      fechaNacimiento: persona.fechaNacimiento.toISOString()
-    });
+      fechaNacimiento: persona.fechaNacimiento.toISOString(),
+      idDepartamento: persona.idDepartamento,
+      foto: persona.foto,
+    };
+    return await this.api.put<PersonaDTO>(`/personas/${persona.id}`, data);
   }
 
-  async updatePersona(persona: clsPersona): Promise<void> {
-    await APIConnection.put(`/personas/${persona.id}`, {
-      id: persona.id,
-      nombre: persona.nombre,
-      apellido: persona.apellido,
-      fechaNacimiento: persona.fechaNacimiento.toISOString()
-    });
-  }
-
-  async deletePersona(id: number): Promise<void> {
-    await APIConnection.delete(`/personas/${id}`);
+  async delete(id: number): Promise<boolean> {
+    return await this.api.delete(`/personas/${id}`);
   }
 }

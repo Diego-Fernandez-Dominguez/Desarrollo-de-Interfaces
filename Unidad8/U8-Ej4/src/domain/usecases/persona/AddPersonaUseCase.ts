@@ -1,10 +1,15 @@
-import { IPersonaRepository } from "../../interfaces/repositories/IPersonaRepository";
-import { clsPersona } from "../../entities/clsPersona";
+import { IAddPersonaUseCase } from '../../interfaces/usecases/personas/IAddPersonaUseCase';
+import { IPersonaRepository } from '../../interfaces/repositories/IPersonaRepository';
+import { clsPersona } from '../../entities/clsPersona';
+import { PersonaDTO } from '../../dtos/PersonaDTO';
+import { injectable, inject } from 'inversify';
+import { DITypes } from '@/src/di/types';
 
-export class AddPersonaUseCase {
-  constructor(private repo: IPersonaRepository) {}
+@injectable()
+export class AddPersonaUseCase implements IAddPersonaUseCase {
+  constructor(@inject(DITypes.PersonaRepository) private personaRepository: IPersonaRepository) {}
 
-  async execute(persona: clsPersona): Promise<void> {
-    await this.repo.addPersona(persona);
+  async execute(persona: clsPersona): Promise<PersonaDTO> {
+    return await this.personaRepository.add(persona);
   }
 }

@@ -1,9 +1,10 @@
 import { clsPersona } from '../../entities/clsPersona';
+import { PersonaDTO } from '../../dtos/PersonaDTO';
 
 export interface IPersonaRepository {
-  getPersonas(): Promise<clsPersona[]>;
-  getPersonaById(id: number): Promise<clsPersona>;
-  addPersona(persona: clsPersona): Promise<void>;
-  updatePersona(persona: clsPersona): Promise<void>;
-  deletePersona(id: number): Promise<void>;
+  getAll(): Promise<PersonaDTO[]>;
+  getById(id: number): Promise<PersonaDTO | null>;
+  add(persona: clsPersona): Promise<PersonaDTO>;
+  update(persona: clsPersona): Promise<PersonaDTO>;
+  delete(id: number): Promise<boolean>;
 }

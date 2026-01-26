@@ -1,12 +1,21 @@
-import { IPersonaRepository } from "../../interfaces/repositories/IPersonaRepository";
+import { IDeletePersonaUseCase } from '../../interfaces/usecases/personas/IDeletePersonaUseCase';
+import { IPersonaRepository } from '../../interfaces/repositories/IPersonaRepository';
+import { injectable, inject } from 'inversify';
+import { DITypes } from '@/src/di/types';
 
-export class DeletePersonaUseCase {
-  constructor(private repo: IPersonaRepository) {}
+@injectable()
+export class DeletePersonaUseCase implements IDeletePersonaUseCase {
+  constructor(@inject(DITypes.PersonaRepository)private personaRepository: IPersonaRepository) {}
 
-  async execute(id: number): Promise<void> {
-    const day = new Date().getDay();
-    if (day === 0) throw new Error("No se puede eliminar en domingo");
-
-    await this.repo.deletePersona(id);
+  async execute(id: number): Promise<boolean> {
+    // Regla de negocio: Los domingos no se puede eliminar
+    const today = new Date();
+    const dayOfWeek = today.getDay();
+    
+    if (dayOfWeek === 0) {
+      throw new Error('No se permite eliminar personas los domingos');
+    }
+    
+    return await this.personaRepository.delete(id);
   }
 }

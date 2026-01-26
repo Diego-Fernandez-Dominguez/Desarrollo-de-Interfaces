@@ -1,5 +1,5 @@
-import { clsPersona } from "../../../entities/clsPersona";
+import { PersonaDTO } from '../../../dtos/PersonaDTO';
 
 export interface IGetPersonasUseCase {
-  execute(): Promise<clsPersona[]>;
+  execute(): Promise<PersonaDTO[]>;
 }

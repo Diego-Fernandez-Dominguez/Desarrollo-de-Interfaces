@@ -6,13 +6,14 @@ import { PeopleListVM } from "@/app/UI/ViewModels/PeopleListVM";
 import { TYPES } from "./types";
 import { IPersonaUseCase } from "../Domain/Interfaces/UseCases/IPersonaUseCase";
 import { PersonasUseCase } from "../Domain/UseCases/PersonasUseCase";
+import { RepositoryPersonasApi } from "../Data/Repositories/RepositoryPersonasApi";
 
 
 const container = new Container();
 
 
 // Vinculamos la interfaz con su implementación concreta
-container.bind<IRepositoryPersonas>(TYPES.IRepositoryPersonas).to(RepositoryPersonas);
+container.bind<IRepositoryPersonas>(TYPES.IRepositoryPersonas).to(RepositoryPersonasApi);
 container.bind<IPersonaUseCase>(TYPES.IPersonaUseCase).to(PersonasUseCase);
 container.bind<PeopleListVM>(TYPES.IndexVM).to(PeopleListVM);
 export { container };

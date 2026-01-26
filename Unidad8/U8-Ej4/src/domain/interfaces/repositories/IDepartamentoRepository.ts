@@ -1,10 +1,10 @@
-// IDepartamentoRepository.ts
 import { clsDepartamento } from '../../entities/clsDepartamento';
-;
+import { DepartamentoDTO } from '../../dtos/DepartamentoDTO';
 
 export interface IDepartamentoRepository {
-  getDepartamentos(): Promise<clsDepartamento[]>;
-  addDepartamento(departamento: clsDepartamento): Promise<void>;
-  updateDepartamento(departamento: clsDepartamento): Promise<void>;
-  deleteDepartamento(id: number): Promise<void>;
+  getAll(): Promise<DepartamentoDTO[]>;
+  getById(id: number): Promise<DepartamentoDTO | null>;
+  add(departamento: clsDepartamento): Promise<DepartamentoDTO>;
+  update(departamento: clsDepartamento): Promise<DepartamentoDTO>;
+  delete(id: number): Promise<boolean>;
 }

@@ -1,39 +1,45 @@
-// data/repositories/DepartamentoRepository.ts
 import { IDepartamentoRepository } from '../../domain/interfaces/repositories/IDepartamentoRepository';
 import { clsDepartamento } from '../../domain/entities/clsDepartamento';
+import { DepartamentoDTO } from '../../domain/dtos/DepartamentoDTO';
 import { APIConnection } from '../datasources/api/APIConnection';
+import { injectable, inject } from 'inversify';
 
+@injectable()
 export class DepartamentoRepository implements IDepartamentoRepository {
-  async getDepartamentos(): Promise<clsDepartamento[]> {
-    const data = await APIConnection.get('/departamentos');
+  private api: APIConnection;
 
-    return data.map((dto: any) => new clsDepartamento(
-      dto.id,
-      dto.nombre
-    ));
+  constructor() {
+    this.api = APIConnection.getInstance();
   }
 
-  async getDepartamentoById(id: number): Promise<clsDepartamento> {
-    const dto = await APIConnection.get(`/departamentos/${id}`);
-
-    return new clsDepartamento(dto.id, dto.nombre);
+  async getAll(): Promise<DepartamentoDTO[]> {
+    return await this.api.get<DepartamentoDTO[]>('/departamentos');
   }
 
-  async addDepartamento(dep: clsDepartamento): Promise<void> {
-    await APIConnection.post('/departamentos', {
-      id: dep.id,
-      nombre: dep.nombre
-    });
+  async getById(id: number): Promise<DepartamentoDTO | null> {
+    try {
+      return await this.api.get<DepartamentoDTO>(`/departamentos/${id}`);
+    } catch (error) {
+      return null;
+    }
   }
 
-  async updateDepartamento(dep: clsDepartamento): Promise<void> {
-    await APIConnection.put(`/departamentos/${dep.id}`, {
-      id: dep.id,
-      nombre: dep.nombre
-    });
+  async add(departamento: clsDepartamento): Promise<DepartamentoDTO> {
+    const data = {
+      nombre: departamento.nombre,
+    };
+    return await this.api.post<DepartamentoDTO>('/departamentos', data);
   }
 
-  async deleteDepartamento(id: number): Promise<void> {
-    await APIConnection.delete(`/departamentos/${id}`);
+  async update(departamento: clsDepartamento): Promise<DepartamentoDTO> {
+    const data = {
+      id: departamento.id,
+      nombre: departamento.nombre,
+    };
+    return await this.api.put<DepartamentoDTO>(`/departamentos/${departamento.id}`, data);
+  }
+
+  async delete(id: number): Promise<boolean> {
+    return await this.api.delete(`/departamentos/${id}`);
   }
 }

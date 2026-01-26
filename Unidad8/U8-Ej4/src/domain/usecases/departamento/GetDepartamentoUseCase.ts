@@ -1,13 +1,14 @@
-import { IDepartamentoRepository } from "../../interfaces/repositories/IDepartamentoRepository";
-import { clsDepartamento } from "../../entities/clsDepartamento";
+import { IGetDepartamentosUseCase } from '../../interfaces/usecases/departamentos/IGetDepartamentosUseCase';
+import { IDepartamentoRepository } from '../../interfaces/repositories/IDepartamentoRepository';
+import { DepartamentoDTO } from '../../dtos/DepartamentoDTO';
+import { injectable, inject } from 'inversify';
+import { DITypes } from '@/src/di/types';
 
-export class GetPersonasUseCase {
-  constructor(private repo: IDepartamentoRepository) {}
+@injectable()
+export class GetDepartamentosUseCase implements IGetDepartamentosUseCase {
+  constructor(@inject(DITypes.PersonaRepository)private departamentoRepository: IDepartamentoRepository) {}
 
-  async execute(): Promise<clsDepartamento[]> {
-    const personas = await this.repo.getDepartamentos();
-    const day = new Date().getDay();
-
-    return personas;
+  async execute(): Promise<DepartamentoDTO[]> {
+    return await this.departamentoRepository.getAll();
   }
 }
