@@ -20,39 +20,50 @@ export const EditarInsertarPersonaScreen: React.FC = observer(() => {
   const [apellido, setApellido] = useState('');
   const [fechaNacimiento, setFechaNacimiento] = useState('');
   const [idDepartamento, setIdDepartamento] = useState(0);
-  const [foto, setFoto] = useState('');
+  const [imagen, setImagen] = useState('');
+  const [direccion, setDireccion] = useState('');
+  const [telefono, setTelefono] = useState('');
 
   const isEditing = personaId !== undefined;
 
-  useEffect(() => {
-    const init = async () => {
-      await departamentosVM.loadDepartamentos();
+useEffect(() => {
+  const init = async () => {
+    await departamentosVM.loadDepartamentos();
 
-      // Asegurar que las personas están cargadas
-      if (personasVM.personas.length === 0) {
-        await personasVM.loadPersonas();
-      }
+    if (personasVM.personas.length === 0) {
+      await personasVM.loadPersonas();
+    }
 
-      if (isEditing) {
-        const persona = personasVM.personas.find(p => p.id === personaId);
+    if (!isEditing) {
+      setNombre('');
+      setApellido('');
+      setFechaNacimiento('');
+      setIdDepartamento(0);
+      setImagen('');
+      setDireccion('');
+      setTelefono('');
+      return;
+    }
 
-        if (persona) {
-          setNombre(persona.nombre);
-          setApellido(persona.apellido);
+    const persona = personasVM.personas.find(p => p.id === personaId);
 
-          const fecha = new Date(persona.fechaNacimiento);
-          setFechaNacimiento(fecha.toISOString().split('T')[0]);
+    if (persona) {
+      setNombre(persona.nombre);
+      setApellido(persona.apellido);
 
-          setIdDepartamento(persona.idDepartamento);
-          setFoto(persona.foto || '');
-        } else {
-          console.warn("Persona no encontrada con ID:", personaId);
-        }
-      }
-    };
+      const fecha = new Date(persona.fechaNacimiento);
+      setFechaNacimiento(fecha.toISOString().split('T')[0]);
 
-    init();
-  }, []);
+      setIdDepartamento(persona.idDepartamento);
+      setImagen(persona.imagen || '');
+      setDireccion(persona.direccion || '');
+      setTelefono(persona.telefono || '');
+    }
+  };
+
+  init();
+}, [personaId]);
+
 
   const handleSave = async () => {
     if (!nombre || !apellido || !fechaNacimiento || !idDepartamento) {
@@ -68,7 +79,9 @@ export const EditarInsertarPersonaScreen: React.FC = observer(() => {
       apellido,
       fechaDate,
       idDepartamento,
-      foto || ''
+      imagen || '',
+      direccion || '',
+      telefono || ''
     );
 
     const success = isEditing
@@ -146,12 +159,33 @@ export const EditarInsertarPersonaScreen: React.FC = observer(() => {
         </View>
 
         <View style={styles.formGroup}>
-          <Text style={styles.label}>URL Foto (opcional)</Text>
+          <Text style={styles.label}>Imagen (URL)</Text>
           <TextInput
             style={styles.input}
-            value={foto}
-            onChangeText={setFoto}
+            value={imagen}
+            onChangeText={setImagen}
             placeholder="https://ejemplo.com/foto.jpg"
+          />
+        </View>
+
+        <View style={styles.formGroup}>
+          <Text style={styles.label}>Dirección</Text>
+          <TextInput
+            style={styles.input}
+            value={direccion}
+            onChangeText={setDireccion}
+            placeholder="Dirección"
+          />
+        </View>
+
+        <View style={styles.formGroup}>
+          <Text style={styles.label}>Teléfono</Text>
+          <TextInput
+            style={styles.input}
+            value={telefono}
+            onChangeText={setTelefono}
+            placeholder="Teléfono"
+            keyboardType="phone-pad"
           />
         </View>
 

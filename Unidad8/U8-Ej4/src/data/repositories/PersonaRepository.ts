@@ -30,9 +30,9 @@ export class PersonaRepository implements IPersonaRepository {
     apellido: persona.apellido,
     fechaNac: persona.fechaNacimiento.toISOString(), // 👈 nombre correcto
     idDepartamento: persona.idDepartamento,
-    imagen: persona.foto ?? "", // 👈 nombre correcto
-    //direccion: persona.direccion ?? "",
-    //telefono: persona.telefono ?? ""
+    imagen: persona.imagen ?? "", // 👈 nombre correcto
+    direccion: persona.direccion ?? "",
+    telefono: persona.telefono ?? ""
   };
 
   return await this.api.post<PersonaDTO>('/api/personas', data);
@@ -45,9 +45,9 @@ async update(persona: clsPersona): Promise<PersonaDTO> {
     apellido: persona.apellido,
     fechaNac: persona.fechaNacimiento.toISOString(), // 👈 nombre correcto
     idDepartamento: persona.idDepartamento,
-    imagen: persona.foto ?? "", // 👈 nombre correcto
-    //direccion: persona.direccion ?? "",
-    //telefono: persona.telefono ?? ""
+    imagen: persona.imagen ?? "", // 👈 nombre correcto
+    direccion: persona.direccion ?? "",
+    telefono: persona.telefono ?? ""
   };
 
   return await this.api.put<PersonaDTO>(`/api/personas/${persona.id}`, data);

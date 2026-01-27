@@ -74,33 +74,33 @@ export class DepartamentosViewModel {
   }
 
   async addDepartamento(departamento: clsDepartamento) {
-    try {
-      const departamentoDTO = await this.addDepartamentoUseCase.execute(departamento);
-      runInAction(() => {
-        this.departamentos.push(mapDepartamentoDTOToUI(departamentoDTO));
-      });
-      return true;
-    } catch (err) {
-      this.error = 'Error al añadir departamento';
-      return false;
-    }
+  try {
+    await this.addDepartamentoUseCase.execute(departamento);
+
+    await this.loadDepartamentos();
+
+    return true;
+  } catch (err) {
+    this.error = 'Error al añadir departamento';
+    return false;
   }
+}
+
 
   async updateDepartamento(departamento: clsDepartamento) {
-    try {
-      const departamentoDTO = await this.updateDepartamentoUseCase.execute(departamento);
-      runInAction(() => {
-        const index = this.departamentos.findIndex(d => d.id === departamento.id);
-        if (index !== -1) {
-          this.departamentos[index] = mapDepartamentoDTOToUI(departamentoDTO);
-        }
-      });
-      return true;
-    } catch (err) {
-      this.error = 'Error al actualizar departamento';
-      return false;
-    }
+  try {
+    await this.updateDepartamentoUseCase.execute(departamento);
+
+    await this.loadDepartamentos(); // recargar desde la API
+
+    return true;
+  } catch (err) {
+    this.error = 'Error al actualizar departamento';
+    return false;
   }
+}
+
+
 
   async deleteDepartamento(id: number) {
     try {

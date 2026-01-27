@@ -16,7 +16,7 @@ constructor( @inject(DITypes.PersonaRepository) private personaRepository: IPers
     
     if (dayOfWeek === 5 || dayOfWeek === 6) {
       return personas.filter(persona => {
-        const edad = this.calcularEdad(persona.fechaNacimiento);
+        const edad = this.calcularEdad(persona.fechaNac);
         return edad > 18;
       });
     }
@@ -24,7 +24,7 @@ constructor( @inject(DITypes.PersonaRepository) private personaRepository: IPers
     return personas;
   }
 
-  private calcularEdad(fechaNacimiento: Date): number {
+  private calcularEdad(fechaNacimiento: string): number {
     const hoy = new Date();
     const fechaNac = new Date(fechaNacimiento);
     let edad = hoy.getFullYear() - fechaNac.getFullYear();

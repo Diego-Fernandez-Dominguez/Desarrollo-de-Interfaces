@@ -12,6 +12,7 @@ export const ListadoPersonasScreen: React.FC = observer(() => {
   const viewModel = container.get<PersonasViewModel>(DITypes.PersonasViewModel);
 
   useEffect(() => {
+    viewModel.selectPersona(null);
     viewModel.loadPersonas();
   }, []);
 
@@ -80,8 +81,8 @@ export const ListadoPersonasScreen: React.FC = observer(() => {
         </View>
       ) : (
         <FlatList
-          data={viewModel.personasFiltradas}
-          keyExtractor={(item) => item.id.toString()}
+          data={viewModel.personasFiltradas} 
+          keyExtractor={(item, index) => (item?.id ?? index).toString()}
           renderItem={({ item }) => (
             <PersonaListItem
               persona={item}

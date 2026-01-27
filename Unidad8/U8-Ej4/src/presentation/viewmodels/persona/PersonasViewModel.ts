@@ -80,34 +80,33 @@ export class PersonasViewModel {
     }
   }
 
-  async addPersona(persona: clsPersona) {
-    try {
-      const personaDTO = await this.addPersonaUseCase.execute(persona);
-      runInAction(() => {
-        this.personas.push(mapPersonaDTOToUI(personaDTO));
-      });
-      return true;
-    } catch (err) {
-      this.error = 'Error al añadir persona';
-      return false;
-    }
-  }
+async addPersona(persona: clsPersona) {
+  try {
+    await this.addPersonaUseCase.execute(persona);
 
-  async updatePersona(persona: clsPersona) {
-    try {
-      const personaDTO = await this.updatePersonaUseCase.execute(persona);
-      runInAction(() => {
-        const index = this.personas.findIndex(p => p.id === persona.id);
-        if (index !== -1) {
-          this.personas[index] = mapPersonaDTOToUI(personaDTO);
-        }
-      });
-      return true;
-    } catch (err) {
-      this.error = 'Error al actualizar persona';
-      return false;
-    }
+    // 👇 en vez de usar el DTO devuelto, recargamos todo
+    await this.loadPersonas();
+
+    return true;
+  } catch (err) {
+    this.error = 'Error al añadir persona';
+    return false;
   }
+}
+
+async updatePersona(persona: clsPersona) {
+  try {
+    await this.updatePersonaUseCase.execute(persona);
+
+    // 👇 igual: recargamos desde el backend
+    await this.loadPersonas();
+
+    return true;
+  } catch (err) {
+    this.error = 'Error al actualizar persona';
+    return false;
+  }
+}
 
   async deletePersona(id: number) {
     try {

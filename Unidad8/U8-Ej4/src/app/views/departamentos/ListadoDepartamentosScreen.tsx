@@ -1,25 +1,18 @@
 import React, { useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, TextInput, StyleSheet, Alert } from 'react-native';
 import { observer } from 'mobx-react-lite';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { useRouter } from 'expo-router';
 import { container } from '../../../di/container';
 import { DITypes } from '../../../di/types';
 import { DepartamentosViewModel } from '../../../presentation/viewmodels/departamento/DepartamentosViewModel';
 import { DepartamentoListItem } from '../../../presentation/components/departamentos/DepartamentoListItem';
 
-type DepartamentosStackParamList = {
-  ListadoDepartamentos: undefined;
-  EditarInsertarDepartamento: { departamentoId?: number };
-};
-
-type NavigationProp = StackNavigationProp<DepartamentosStackParamList>;
-
 export const ListadoDepartamentosScreen: React.FC = observer(() => {
-  const navigation = useNavigation<NavigationProp>();
+  const router = useRouter();
   const viewModel = container.get<DepartamentosViewModel>(DITypes.DepartamentosViewModel);
 
   useEffect(() => {
+    viewModel.selectDepartamento(null);
     viewModel.loadDepartamentos();
   }, []);
 
@@ -48,7 +41,11 @@ export const ListadoDepartamentosScreen: React.FC = observer(() => {
     const departamento = viewModel.departamentos.find(d => d.id === departamentoId);
     if (departamento) {
       viewModel.selectDepartamento(departamento);
-      navigation.navigate('EditarInsertarDepartamento', { departamentoId });
+
+      router.push({
+        pathname: '/views/departamentos/EditarInsertarDepartamentosScreen',
+        params: { departamentoId },
+      });
     }
   };
 
@@ -56,11 +53,12 @@ export const ListadoDepartamentosScreen: React.FC = observer(() => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Departamentos</Text>
+
         <TouchableOpacity
           style={styles.addButton}
           onPress={() => {
             viewModel.selectDepartamento(null);
-            navigation.navigate('EditarInsertarDepartamento', {});
+            router.push('/views/departamentos/EditarInsertarDepartamentosScreen');
           }}
         >
           <Text style={styles.addButtonText}>+ Añadir</Text>
