@@ -28,9 +28,9 @@ export class PersonaRepository implements IPersonaRepository {
   const data = {
     nombre: persona.nombre,
     apellido: persona.apellido,
-    fechaNac: persona.fechaNacimiento.toISOString(), // 👈 nombre correcto
+    fechaNac: persona.fechaNacimiento.toISOString(),
     idDepartamento: persona.idDepartamento,
-    imagen: persona.imagen ?? "", // 👈 nombre correcto
+    imagen: persona.imagen ?? "",
     direccion: persona.direccion ?? "",
     telefono: persona.telefono ?? ""
   };
@@ -43,9 +43,9 @@ async update(persona: clsPersona): Promise<PersonaDTO> {
     id: persona.id,
     nombre: persona.nombre,
     apellido: persona.apellido,
-    fechaNac: persona.fechaNacimiento.toISOString(), // 👈 nombre correcto
+    fechaNac: persona.fechaNacimiento.toISOString(),
     idDepartamento: persona.idDepartamento,
-    imagen: persona.imagen ?? "", // 👈 nombre correcto
+    imagen: persona.imagen ?? "",
     direccion: persona.direccion ?? "",
     telefono: persona.telefono ?? ""
   };

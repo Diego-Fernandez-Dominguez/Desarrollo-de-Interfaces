@@ -37,17 +37,16 @@ export default function RootLayout() {
           options={{
             drawerLabel: 'Inicio',
             title: 'Gestión de Personal',
-            drawerIcon: () => <Text style={styles.icon}>🏠</Text>,
+            drawerIcon: () => <Text style={styles.icon}></Text>,
           }}
         />
 
-        {/* ⚠️ IMPORTANTE: Usa la ruta exacta según tu estructura */}
         <Drawer.Screen
           name="views/personas/ListadoPersonaScreen"
           options={{
             drawerLabel: 'Personas',
             title: 'Gestión de Personas',
-            drawerIcon: () => <Text style={styles.icon}>👥</Text>,
+            drawerIcon: () => <Text style={styles.icon}></Text>,
           }}
         />
 
@@ -56,10 +55,28 @@ export default function RootLayout() {
           options={{
             drawerLabel: 'Departamentos',
             title: 'Gestión de Departamentos',
-            drawerIcon: () => <Text style={styles.icon}>🏢</Text>,
+            drawerIcon: () => <Text style={styles.icon}></Text>,
+          }}
+        />
+
+        {/* Ocultar las pantallas de edición/inserción del drawer */}
+        <Drawer.Screen
+          name="views/personas/EditarInsertarPersonaScreen"
+          options={{
+            drawerItemStyle: { display: 'none' },
+            title: 'Editar Persona',
+          }}
+        />
+
+        <Drawer.Screen
+          name="views/departamentos/EditarInsertarDepartamentosScreen"
+          options={{
+            drawerItemStyle: { display: 'none' },
+            title: 'Editar Departamento',
           }}
         />
       </Drawer>
+      
     </GestureHandlerRootView>
   );
 }

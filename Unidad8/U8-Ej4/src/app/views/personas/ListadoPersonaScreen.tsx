@@ -16,25 +16,15 @@ export const ListadoPersonasScreen: React.FC = observer(() => {
     viewModel.loadPersonas();
   }, []);
 
-  const handleDelete = async (id: number) => {
-    Alert.alert(
-      'Confirmar eliminación',
-      '¿Estás seguro de que deseas eliminar esta persona?',
-      [
-        { text: 'Cancelar', style: 'cancel' },
-        {
-          text: 'Eliminar',
-          style: 'destructive',
-          onPress: async () => {
-            const success = await viewModel.deletePersona(id);
-            if (!success && viewModel.error) {
-              Alert.alert('Error', viewModel.error);
-              viewModel.clearError();
-            }
-          },
-        },
-      ]
-    );
+    const handleDelete = async (id: number) => {
+    const confirmed = window.confirm('Vas a eliminar a esta persona del mundo. ¿Estas seguro?');
+    if (confirmed) {
+      const success = await viewModel.deletePersona(id);
+      if (!success && viewModel.error) {
+        window.alert(viewModel.error);
+        viewModel.clearError();
+      }
+    }
   };
 
   const handleEdit = (personaId: number) => {

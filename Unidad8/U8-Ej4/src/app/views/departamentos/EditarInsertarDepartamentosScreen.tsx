@@ -1,36 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert } from 'react-native';
 import { observer } from 'mobx-react-lite';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RouteProp } from '@react-navigation/native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { container } from '../../../di/container';
 import { DITypes } from '../../../di/types';
 import { DepartamentosViewModel } from '../../../presentation/viewmodels/departamento/DepartamentosViewModel';
 import { clsDepartamento } from '../../../domain/entities/clsDepartamento';
 
-type DepartamentosStackParamList = {
-  ListadoDepartamentos: undefined;
-  EditarInsertarDepartamento: { departamentoId?: number };
-};
-
-type NavigationProp = StackNavigationProp<DepartamentosStackParamList>;
-type RoutePropType = RouteProp<DepartamentosStackParamList, 'EditarInsertarDepartamento'>;
-
 export const EditarInsertarDepartamentoScreen: React.FC = observer(() => {
-  const navigation = useNavigation<NavigationProp>();
-  const route = useRoute<RoutePropType>();
+  const router = useRouter();
+  const params = useLocalSearchParams();
+  const departamentoId = params.departamentoId ? Number(params.departamentoId) : undefined;
+
   const viewModel = container.get<DepartamentosViewModel>(DITypes.DepartamentosViewModel);
 
   const [nombre, setNombre] = useState('');
 
-  const isEditing = route.params?.departamentoId !== undefined;
+  const isEditing = departamentoId !== undefined;
 
   useEffect(() => {
-    if (isEditing && viewModel.departamentoSeleccionado) {
-      setNombre(viewModel.departamentoSeleccionado.nombre);
-    }
-  }, []);
+    const init = async () => {
+      if (viewModel.departamentos.length === 0) {
+        await viewModel.loadDepartamentos();
+      }
+
+      if (!isEditing) {
+        setNombre('');
+        return;
+      }
+
+      const departamento = viewModel.departamentos.find(d => d.id === departamentoId);
+
+      if (departamento) {
+        setNombre(departamento.nombre);
+      }
+    };
+
+    init();
+  }, [departamentoId]);
 
   const handleSave = async () => {
     if (!nombre.trim()) {
@@ -39,7 +46,7 @@ export const EditarInsertarDepartamentoScreen: React.FC = observer(() => {
     }
 
     const departamento = new clsDepartamento(
-      isEditing ? viewModel.departamentoSeleccionado!.id : 0,
+      isEditing ? departamentoId! : 0,
       nombre
     );
 
@@ -48,7 +55,7 @@ export const EditarInsertarDepartamentoScreen: React.FC = observer(() => {
       : await viewModel.addDepartamento(departamento);
 
     if (success) {
-      navigation.goBack();
+      router.push('/views/departamentos/ListadoDepartamentosScreen');
     } else {
       Alert.alert('Error', viewModel.error || 'No se pudo guardar el departamento');
       viewModel.clearError();
@@ -73,7 +80,10 @@ export const EditarInsertarDepartamentoScreen: React.FC = observer(() => {
         </View>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.cancelButton} onPress={() => navigation.goBack()}>
+          <TouchableOpacity 
+            style={styles.cancelButton} 
+            onPress={() => router.push('/views/departamentos/ListadoDepartamentosScreen')}
+          >
             <Text style={styles.cancelButtonText}>Cancelar</Text>
           </TouchableOpacity>
 

@@ -91,7 +91,7 @@ export class DepartamentosViewModel {
   try {
     await this.updateDepartamentoUseCase.execute(departamento);
 
-    await this.loadDepartamentos(); // recargar desde la API
+    await this.loadDepartamentos();
 
     return true;
   } catch (err) {

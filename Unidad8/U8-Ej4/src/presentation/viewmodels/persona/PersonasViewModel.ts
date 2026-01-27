@@ -1,9 +1,3 @@
-// ============================================
-// RUTAS CORRECTAS PARA VIEWMODELS
-// ============================================
-
-// ✅ CORRECTO - presentation/viewmodels/personas/PersonasViewModel.ts
-// Nota: "personas" (plural)
 import { makeAutoObservable, runInAction } from 'mobx';
 import { PersonaUIModel, mapPersonaDTOToUI } from '../../models/PersonaUIModel';
 import { clsPersona } from '../../../domain/entities/clsPersona';
@@ -84,7 +78,6 @@ async addPersona(persona: clsPersona) {
   try {
     await this.addPersonaUseCase.execute(persona);
 
-    // 👇 en vez de usar el DTO devuelto, recargamos todo
     await this.loadPersonas();
 
     return true;
@@ -98,7 +91,6 @@ async updatePersona(persona: clsPersona) {
   try {
     await this.updatePersonaUseCase.execute(persona);
 
-    // 👇 igual: recargamos desde el backend
     await this.loadPersonas();
 
     return true;

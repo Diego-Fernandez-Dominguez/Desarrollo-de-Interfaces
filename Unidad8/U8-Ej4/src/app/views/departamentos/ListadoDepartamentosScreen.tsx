@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, TextInput, StyleSheet, Alert } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { useRouter } from 'expo-router';
 import { container } from '../../../di/container';
@@ -17,24 +17,15 @@ export const ListadoDepartamentosScreen: React.FC = observer(() => {
   }, []);
 
   const handleDelete = async (id: number) => {
-    Alert.alert(
-      'Confirmar eliminación',
-      '¿Estás seguro de que deseas eliminar este departamento?',
-      [
-        { text: 'Cancelar', style: 'cancel' },
-        {
-          text: 'Eliminar',
-          style: 'destructive',
-          onPress: async () => {
-            const success = await viewModel.deleteDepartamento(id);
-            if (!success && viewModel.error) {
-              Alert.alert('Error', viewModel.error);
-              viewModel.clearError();
-            }
-          },
-        },
-      ]
-    );
+    const confirmed = window.confirm('¿Estás seguro de que deseas eliminar este departamento?');
+    
+    if (confirmed) {
+      const success = await viewModel.deleteDepartamento(id);
+      if (!success && viewModel.error) {
+        window.alert(viewModel.error);
+        viewModel.clearError();
+      }
+    }
   };
 
   const handleEdit = (departamentoId: number) => {
