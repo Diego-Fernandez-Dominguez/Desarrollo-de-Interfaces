@@ -1,22 +1,14 @@
 import React, { useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, TextInput, StyleSheet, Alert } from 'react-native';
 import { observer } from 'mobx-react-lite';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { useRouter } from 'expo-router';
 import { container } from '../../../di/container';
 import { DITypes } from '../../../di/types';
 import { PersonasViewModel } from '../../../presentation/viewmodels/persona/PersonasViewModel';
 import { PersonaListItem } from '../../../presentation/components/personas/PersonaListItem';
 
-type PersonasStackParamList = {
-  ListadoPersonas: undefined;
-  EditarInsertarPersona: { personaId?: number };
-};
-
-type NavigationProp = StackNavigationProp<PersonasStackParamList>;
-
 export const ListadoPersonasScreen: React.FC = observer(() => {
-  const navigation = useNavigation<NavigationProp>();
+  const router = useRouter();
   const viewModel = container.get<PersonasViewModel>(DITypes.PersonasViewModel);
 
   useEffect(() => {
@@ -48,7 +40,11 @@ export const ListadoPersonasScreen: React.FC = observer(() => {
     const persona = viewModel.personas.find(p => p.id === personaId);
     if (persona) {
       viewModel.selectPersona(persona);
-      navigation.navigate('EditarInsertarPersona', { personaId });
+
+      router.push({
+        pathname: '/views/personas/EditarInsertarPersonaScreen',
+        params: { personaId },
+      });
     }
   };
 
@@ -56,11 +52,13 @@ export const ListadoPersonasScreen: React.FC = observer(() => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Personas</Text>
+
         <TouchableOpacity
           style={styles.addButton}
           onPress={() => {
             viewModel.selectPersona(null);
-            navigation.navigate('EditarInsertarPersona', {});
+            router.push('/views/personas/EditarInsertarPersonaScreen');
+
           }}
         >
           <Text style={styles.addButtonText}>+ Añadir</Text>

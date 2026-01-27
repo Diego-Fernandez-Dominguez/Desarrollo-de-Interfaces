@@ -1,26 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert } from 'react-native';
 import { observer } from 'mobx-react-lite';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RouteProp } from '@react-navigation/native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { container } from '../../../di/container';
 import { DITypes } from '../../../di/types';
 import { PersonasViewModel } from '../../../presentation/viewmodels/persona/PersonasViewModel';
 import { DepartamentosViewModel } from '../../../presentation/viewmodels/departamento/DepartamentosViewModel';
 import { clsPersona } from '../../../domain/entities/clsPersona';
 
-type PersonasStackParamList = {
-  ListadoPersonas: undefined;
-  EditarInsertarPersona: { personaId?: number };
-};
-
-type NavigationProp = StackNavigationProp<PersonasStackParamList>;
-type RoutePropType = RouteProp<PersonasStackParamList, 'EditarInsertarPersona'>;
-
 export const EditarInsertarPersonaScreen: React.FC = observer(() => {
-  const navigation = useNavigation<NavigationProp>();
-  const route = useRoute<RoutePropType>();
+  const router = useRouter();
+  const params = useLocalSearchParams();
+  const personaId = params.personaId ? Number(params.personaId) : undefined;
+
   const personasVM = container.get<PersonasViewModel>(DITypes.PersonasViewModel);
   const departamentosVM = container.get<DepartamentosViewModel>(DITypes.DepartamentosViewModel);
 
@@ -30,20 +22,36 @@ export const EditarInsertarPersonaScreen: React.FC = observer(() => {
   const [idDepartamento, setIdDepartamento] = useState(0);
   const [foto, setFoto] = useState('');
 
-  const isEditing = route.params?.personaId !== undefined;
+  const isEditing = personaId !== undefined;
 
   useEffect(() => {
-    departamentosVM.loadDepartamentos();
+    const init = async () => {
+      await departamentosVM.loadDepartamentos();
 
-    if (isEditing && personasVM.personaSeleccionada) {
-      const persona = personasVM.personaSeleccionada;
-      setNombre(persona.nombre);
-      setApellido(persona.apellido);
-      const fecha = new Date(persona.fechaNacimiento);
-      setFechaNacimiento(fecha.toISOString().split('T')[0]);
-      setIdDepartamento(persona.idDepartamento);
-      setFoto(persona.foto || '');
-    }
+      // Asegurar que las personas están cargadas
+      if (personasVM.personas.length === 0) {
+        await personasVM.loadPersonas();
+      }
+
+      if (isEditing) {
+        const persona = personasVM.personas.find(p => p.id === personaId);
+
+        if (persona) {
+          setNombre(persona.nombre);
+          setApellido(persona.apellido);
+
+          const fecha = new Date(persona.fechaNacimiento);
+          setFechaNacimiento(fecha.toISOString().split('T')[0]);
+
+          setIdDepartamento(persona.idDepartamento);
+          setFoto(persona.foto || '');
+        } else {
+          console.warn("Persona no encontrada con ID:", personaId);
+        }
+      }
+    };
+
+    init();
   }, []);
 
   const handleSave = async () => {
@@ -52,13 +60,15 @@ export const EditarInsertarPersonaScreen: React.FC = observer(() => {
       return;
     }
 
+    const fechaDate = new Date(fechaNacimiento);
+
     const persona = new clsPersona(
-      isEditing ? personasVM.personaSeleccionada!.id : 0,
+      isEditing ? personaId! : 0,
       nombre,
       apellido,
-      new Date(fechaNacimiento),
+      fechaDate,
       idDepartamento,
-      foto || undefined
+      foto || ''
     );
 
     const success = isEditing
@@ -66,7 +76,7 @@ export const EditarInsertarPersonaScreen: React.FC = observer(() => {
       : await personasVM.addPersona(persona);
 
     if (success) {
-      navigation.goBack();
+      router.back();
     } else {
       Alert.alert('Error', personasVM.error || 'No se pudo guardar la persona');
       personasVM.clearError();
@@ -146,7 +156,7 @@ export const EditarInsertarPersonaScreen: React.FC = observer(() => {
         </View>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.cancelButton} onPress={() => navigation.goBack()}>
+          <TouchableOpacity style={styles.cancelButton} onPress={() => router.back()}>
             <Text style={styles.cancelButtonText}>Cancelar</Text>
           </TouchableOpacity>
 

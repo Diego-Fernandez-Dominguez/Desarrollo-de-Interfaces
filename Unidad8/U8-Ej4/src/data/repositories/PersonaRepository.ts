@@ -25,27 +25,34 @@ export class PersonaRepository implements IPersonaRepository {
   }
 
   async add(persona: clsPersona): Promise<PersonaDTO> {
-    const data = {
-      nombre: persona.nombre,
-      apellido: persona.apellido,
-      fechaNacimiento: persona.fechaNacimiento.toISOString(),
-      idDepartamento: persona.idDepartamento,
-      foto: persona.foto,
-    };
-    return await this.api.post<PersonaDTO>('/api/personas', data);
-  }
+  const data = {
+    nombre: persona.nombre,
+    apellido: persona.apellido,
+    fechaNac: persona.fechaNacimiento.toISOString(), // 👈 nombre correcto
+    idDepartamento: persona.idDepartamento,
+    imagen: persona.foto ?? "", // 👈 nombre correcto
+    //direccion: persona.direccion ?? "",
+    //telefono: persona.telefono ?? ""
+  };
 
-  async update(persona: clsPersona): Promise<PersonaDTO> {
-    const data = {
-      id: persona.id,
-      nombre: persona.nombre,
-      apellido: persona.apellido,
-      fechaNacimiento: persona.fechaNacimiento.toISOString(),
-      idDepartamento: persona.idDepartamento,
-      foto: persona.foto,
-    };
-    return await this.api.put<PersonaDTO>(`/api/personas/${persona.id}`, data);
-  }
+  return await this.api.post<PersonaDTO>('/api/personas', data);
+}
+
+async update(persona: clsPersona): Promise<PersonaDTO> {
+  const data = {
+    id: persona.id,
+    nombre: persona.nombre,
+    apellido: persona.apellido,
+    fechaNac: persona.fechaNacimiento.toISOString(), // 👈 nombre correcto
+    idDepartamento: persona.idDepartamento,
+    imagen: persona.foto ?? "", // 👈 nombre correcto
+    //direccion: persona.direccion ?? "",
+    //telefono: persona.telefono ?? ""
+  };
+
+  return await this.api.put<PersonaDTO>(`/api/personas/${persona.id}`, data);
+}
+
 
   async delete(id: number): Promise<boolean> {
     return await this.api.delete(`/api/personas/${id}`);
