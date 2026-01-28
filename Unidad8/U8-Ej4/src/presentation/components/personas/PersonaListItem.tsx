@@ -22,10 +22,8 @@ export const PersonaListItem: React.FC<Props> = ({ persona, onPress, onDelete })
   return (
     <Pressable style={styles.card} onPress={onPress}>
       
-      {/* BARRA DE COLOR */}
       <View style={[styles.colorBar, { backgroundColor: persona.color }]} />
 
-      {/* FOTO */}
       {persona.imagen ? (
         <Image source={{ uri: persona.imagen }} style={styles.image} />
       ) : (
@@ -34,7 +32,6 @@ export const PersonaListItem: React.FC<Props> = ({ persona, onPress, onDelete })
         </View>
       )}
 
-      {/* CONTENIDO */}
       <View style={styles.content}>
         <Text style={styles.nombre}>{persona.nombre} {persona.apellido}</Text>
 

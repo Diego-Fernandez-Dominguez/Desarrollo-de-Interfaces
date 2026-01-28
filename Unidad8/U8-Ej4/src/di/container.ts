@@ -2,13 +2,11 @@ import { Container } from 'inversify';
 import 'reflect-metadata';
 import { DITypes } from '../di/types';
 
-// Repositories
 import { IPersonaRepository } from '../domain/interfaces/repositories/IPersonaRepository';
 import { IDepartamentoRepository } from '../domain/interfaces/repositories/IDepartamentoRepository';
 import { PersonaRepository } from '../data/repositories/PersonaRepository';
 import { DepartamentoRepository } from '../data/repositories/DepartamentoRepository';
 
-// Use Cases - Personas
 import { IGetPersonasUseCase } from '../domain/interfaces/usecases/personas/IGetPersonasUseCase';
 import { IAddPersonaUseCase } from '../domain/interfaces/usecases/personas/IAddPersonaUseCase';
 import { IUpdatePersonaUseCase } from '../domain/interfaces/usecases/personas/IUpdatePersonaUseCase';
@@ -18,7 +16,6 @@ import { AddPersonaUseCase } from '../domain/usecases/persona/AddPersonaUseCase'
 import { UpdatePersonaUseCase } from '../domain/usecases/persona/UpdatePersonaUseCase';
 import { DeletePersonaUseCase } from '../domain/usecases/persona/DeletePersonaUseCase';
 
-// Use Cases - Departamentos
 import { IGetDepartamentosUseCase } from '../domain/interfaces/usecases/departamentos/IGetDepartamentosUseCase';
 import { IAddDepartamentoUseCase } from '../domain/interfaces/usecases/departamentos/IAddDepartamentosUseCase';
 import { IUpdateDepartamentoUseCase } from '../domain/interfaces/usecases/departamentos/IUpdateDepartamentoUseCase';
@@ -28,15 +25,11 @@ import { AddDepartamentoUseCase } from '../domain/usecases/departamento/AddDepar
 import { UpdateDepartamentoUseCase } from '../domain/usecases/departamento/UpdateDepartamentoUseCase';
 import { DeleteDepartamentoUseCase } from '../domain/usecases/departamento/DeleteDepartamentoUseCase';
 
-// ViewModels
 import { PersonasViewModel } from '../presentation/viewmodels/persona/PersonasViewModel';
 import { DepartamentosViewModel } from '../presentation/viewmodels/departamento/DepartamentosViewModel';
 
 const container = new Container();
 
-// --------------------
-// Repositories
-// --------------------
 container
   .bind<IPersonaRepository>(DITypes.PersonaRepository)
   .to(PersonaRepository)
@@ -47,9 +40,6 @@ container
   .to(DepartamentoRepository)
   .inSingletonScope();
 
-// --------------------
-// Use Cases - Personas
-// --------------------
 container
   .bind<IGetPersonasUseCase>(DITypes.GetPersonasUseCase)
   .to(GetPersonasUseCase)
@@ -70,9 +60,6 @@ container
   .to(DeletePersonaUseCase)
   .inSingletonScope();
 
-// --------------------
-// Use Cases - Departamentos
-// --------------------
 container
   .bind<IGetDepartamentosUseCase>(DITypes.GetDepartamentosUseCase)
   .to(GetDepartamentosUseCase)
@@ -93,9 +80,6 @@ container
   .to(DeleteDepartamentoUseCase)
   .inSingletonScope();
 
-// --------------------
-// ViewModels
-// --------------------
 container
   .bind<PersonasViewModel>(DITypes.PersonasViewModel)
   .toDynamicValue(() =>

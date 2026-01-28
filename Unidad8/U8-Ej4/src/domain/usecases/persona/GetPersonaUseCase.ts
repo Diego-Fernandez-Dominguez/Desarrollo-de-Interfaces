@@ -10,9 +10,8 @@ constructor( @inject(DITypes.PersonaRepository) private personaRepository: IPers
   async execute(): Promise<PersonaDTO[]> {
     const personas = await this.personaRepository.getAll();
     
-    // Regla de negocio: Viernes y sábados solo mostrar mayores de 18
     const today = new Date();
-    const dayOfWeek = today.getDay(); // 0=Domingo, 5=Viernes, 6=Sábado
+    const dayOfWeek = today.getDay();
     
     if (dayOfWeek === 5 || dayOfWeek === 6) {
       return personas.filter(persona => {

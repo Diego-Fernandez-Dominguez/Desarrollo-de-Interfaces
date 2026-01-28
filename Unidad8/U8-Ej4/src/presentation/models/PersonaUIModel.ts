@@ -18,12 +18,12 @@ export const mapPersonaDTOToUI = (dto: any): PersonaUIModel => {
     id: dto.id,
     nombre: dto.nombre,
     apellido: dto.apellido,
-    fechaNacimiento: new Date(dto.fechaNac),   // 👈 nombre correcto
-    direccion: dto.direccion,                 // 👈 nuevo
-    telefono: dto.telefono,                   // 👈 nuevo
+    fechaNacimiento: new Date(dto.fechaNac), 
+    direccion: dto.direccion,               
+    telefono: dto.telefono,                 
     idDepartamento: dto.idDepartamento,
-    imagen: dto.imagen,                       // 👈 nombre correcto
-    nombreDepartamento: dto.nombreDepartamento ?? '', // si no viene, vacío
+    imagen: dto.imagen,                  
+    nombreDepartamento: dto.nombreDepartamento ?? '',
     color: colors[dto.id % colors.length],
   };
 };

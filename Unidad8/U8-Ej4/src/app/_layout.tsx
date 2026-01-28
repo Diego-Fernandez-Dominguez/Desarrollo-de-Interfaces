@@ -1,4 +1,3 @@
-// src/app/_layout.tsx
 import { Drawer } from 'expo-router/drawer';
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
@@ -59,7 +58,6 @@ export default function RootLayout() {
           }}
         />
 
-        {/* Ocultar las pantallas de edición/inserción del drawer */}
         <Drawer.Screen
           name="views/personas/EditarInsertarPersonaScreen"
           options={{

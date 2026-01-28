@@ -8,7 +8,6 @@ export class DeletePersonaUseCase implements IDeletePersonaUseCase {
   constructor(@inject(DITypes.PersonaRepository)private personaRepository: IPersonaRepository) {}
 
   async execute(id: number): Promise<boolean> {
-    // Regla de negocio: Los domingos no se puede eliminar
     const today = new Date();
     const dayOfWeek = today.getDay();
     
