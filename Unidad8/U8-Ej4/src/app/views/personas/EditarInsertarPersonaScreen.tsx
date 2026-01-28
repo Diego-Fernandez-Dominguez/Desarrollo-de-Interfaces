@@ -68,7 +68,7 @@ export const EditarInsertarPersonaScreen: React.FC = observer(() => {
 
   const handleSave = async () => {
     if (!nombre || !apellido || !fechaNacimiento || !idDepartamento) {
-      Alert.alert('Error', 'Por favor completa todos los campos obligatorios');
+      window.confirm('Por favor rellena todos los campos');
       return;
     }
 

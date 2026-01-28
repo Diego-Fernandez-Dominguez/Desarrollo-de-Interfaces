@@ -59,7 +59,7 @@ export const ListadoPersonasScreen: React.FC = observer(() => {
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
-          placeholder="Buscar por nombre, apellido o departamento..."
+          placeholder="Buscar por nombre o apellido"
           value={viewModel.searchQuery}
           onChangeText={(text) => viewModel.setSearchQuery(text)}
         />
