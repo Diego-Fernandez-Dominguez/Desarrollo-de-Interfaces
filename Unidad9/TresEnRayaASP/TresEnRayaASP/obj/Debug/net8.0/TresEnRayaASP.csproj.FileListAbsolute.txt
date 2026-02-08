@@ -1,0 +1,9 @@
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnRayaASP\TresEnRayaASP\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnRayaASP\TresEnRayaASP\obj\Debug\net8.0\TresEnRayaASP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnRayaASP\TresEnRayaASP\obj\Debug\net8.0\TresEnRayaASP.AssemblyInfoInputs.cache
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnRayaASP\TresEnRayaASP\obj\Debug\net8.0\TresEnRayaASP.AssemblyInfo.cs
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnRayaASP\TresEnRayaASP\obj\Debug\net8.0\TresEnRayaASP.csproj.CoreCompileInputs.cache
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnRayaASP\TresEnRayaASP\obj\Debug\net8.0\TresEnRayaASP.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnRayaASP\TresEnRayaASP\obj\Debug\net8.0\TresEnRayaASP.RazorAssemblyInfo.cache
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnRayaASP\TresEnRayaASP\obj\Debug\net8.0\TresEnRayaASP.RazorAssemblyInfo.cs
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnRayaASP\TresEnRayaASP\obj\Debug\net8.0\TresEnRayaASP.sourcelink.json
