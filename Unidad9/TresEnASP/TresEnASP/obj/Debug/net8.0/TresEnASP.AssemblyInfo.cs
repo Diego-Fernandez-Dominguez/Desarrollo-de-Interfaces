@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TresEnASP")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47fa326ec8e1180ff6201139a2543aa6ba1b8d3b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+49d345de508a82d55d052c26f30bca3f0d71475e")]
 [assembly: System.Reflection.AssemblyProductAttribute("TresEnASP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TresEnASP")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

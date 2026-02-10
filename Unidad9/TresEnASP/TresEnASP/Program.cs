@@ -1,4 +1,4 @@
-using Infrastructure.Hubs;
+﻿using Infrastructure.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Connections;
@@ -6,34 +6,28 @@ using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSignalR();
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllOriginsWithCredentials", policy =>
+    options.AddPolicy("AllowReactNative", policy =>
     {
-        policy.SetIsOriginAllowed(_ => true)   // acepta cualquier origen
-              .AllowAnyHeader()
+        policy.AllowAnyHeader()
               .AllowAnyMethod()
+              .SetIsOriginAllowed((host) => true)
               .AllowCredentials();
-    });
-
-    options.AddPolicy("AllowAllNoCredentials", policy =>
-    {
-        policy.AllowAnyOrigin()
-              .AllowAnyHeader()
-              .AllowAnyMethod();
     });
 });
 
-builder.Services.AddSignalR();
 
 var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-// IMPORTANTE: UseCors antes de MapHub
-app.UseCors("AllowAllOriginsWithCredentials");
+app.UseWebSockets();
 
-// Mapear hub
+app.UseCors("AllowReactNative");
+
 app.MapHub<GameHub>("/gameHub");
 
 app.Run();

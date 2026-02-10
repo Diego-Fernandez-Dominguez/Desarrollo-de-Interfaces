@@ -1,0 +1,8 @@
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnASP\TresEnASP\obj\Release\net8.0\PubTmp\Out\TresEnASP.exe
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnASP\TresEnASP\obj\Release\net8.0\PubTmp\Out\appsettings.Development.json
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnASP\TresEnASP\obj\Release\net8.0\PubTmp\Out\appsettings.json
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnASP\TresEnASP\obj\Release\net8.0\PubTmp\Out\libman.json
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnASP\TresEnASP\obj\Release\net8.0\PubTmp\Out\TresEnASP.dll
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnASP\TresEnASP\obj\Release\net8.0\PubTmp\Out\TresEnASP.deps.json
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnASP\TresEnASP\obj\Release\net8.0\PubTmp\Out\TresEnASP.runtimeconfig.json
+C:\Users\quick\Documents\GitHub\Desarrollo-de-Interfaces\Unidad9\TresEnASP\TresEnASP\obj\Release\net8.0\PubTmp\Out\TresEnASP.pdb

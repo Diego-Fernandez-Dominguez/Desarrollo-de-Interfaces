@@ -15,6 +15,11 @@ const GameScreen = observer(() => {
         };
     }, []);
 
+    const handleVolverInicio = async () => {
+        await viewModel.desconectar();
+        router.replace('/');
+    };
+
     const renderCasilla = (fila: number, columna: number) => {
         const valor = viewModel.partida.tablero.casillas[fila][columna];
         return (
@@ -22,6 +27,7 @@ const GameScreen = observer(() => {
                 key={`${fila}-${columna}`}
                 style={styles.casilla}
                 onPress={() => viewModel.realizarJugada(fila, columna)}
+                disabled={viewModel.partida.tablero.estado !== 'jugando'}
             >
                 <Text style={styles.simbolo}>{valor || ''}</Text>
             </TouchableOpacity>
@@ -49,7 +55,7 @@ const GameScreen = observer(() => {
             {viewModel.partida.tablero.estado === 'finalizado' && (
                 <TouchableOpacity 
                     style={styles.buttonVolver}
-                    onPress={() => router.back()}
+                    onPress={handleVolverInicio}
                 >
                     <Text style={styles.buttonText}>Volver al inicio</Text>
                 </TouchableOpacity>

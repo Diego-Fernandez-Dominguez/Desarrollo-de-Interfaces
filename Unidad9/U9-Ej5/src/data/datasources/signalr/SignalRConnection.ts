@@ -5,7 +5,8 @@ import 'reflect-metadata';
 @injectable()
 export class SignalRConnection {
     private connection: HubConnection | null = null;
-    private readonly url = 'https://localhost:7088/gameHub';
+    //private readonly url = 'https://localhost:7088/gameHub';
+    private readonly url = 'https://tresenrayaasp-ffekhthpg6fqfrd6.spaincentral-01.azurewebsites.net/gameHub';
 
     async connect(): Promise<void> {
         this.connection = new HubConnectionBuilder()
