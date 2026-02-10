@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\diego.fernandez\\Documents\\GitHub\\Desarrollo-de-Interfaces\\Unidad9\\Ejercicio1\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DFB4A630-B2B5-42CF-9900-EF6DB7E27818}|Ejercicio1\\Ejercicio1.csproj|c:\\users\\diego.fernandez\\documents\\github\\desarrollo-de-interfaces\\unidad9\\ejercicio1\\ejercicio1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFB4A630-B2B5-42CF-9900-EF6DB7E27818}|Ejercicio1\\Ejercicio1.csproj|solutionrelative:ejercicio1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DFB4A630-B2B5-42CF-9900-EF6DB7E27818}|Ejercicio1\\Ejercicio1.csproj|c:\\users\\diego.fernandez\\documents\\github\\desarrollo-de-interfaces\\unidad9\\ejercicio1\\ejercicio1\\wwwroot\\js\\chat.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{DFB4A630-B2B5-42CF-9900-EF6DB7E27818}|Ejercicio1\\Ejercicio1.csproj|solutionrelative:ejercicio1\\wwwroot\\js\\chat.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
@@ -31,6 +35,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\diego.fernandez\\Documents\\GitHub\\Desarrollo-de-Interfaces\\Unidad9\\Ejercicio1\\Ejercicio1\\Program.cs",
+              "RelativeDocumentMoniker": "Ejercicio1\\Program.cs",
+              "ToolTip": "C:\\Users\\diego.fernandez\\Documents\\GitHub\\Desarrollo-de-Interfaces\\Unidad9\\Ejercicio1\\Ejercicio1\\Program.cs",
+              "RelativeToolTip": "Ejercicio1\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-10T09:53:13.995Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "chat.js",
               "DocumentMoniker": "C:\\Users\\diego.fernandez\\Documents\\GitHub\\Desarrollo-de-Interfaces\\Unidad9\\Ejercicio1\\Ejercicio1\\wwwroot\\js\\chat.js",
               "RelativeDocumentMoniker": "Ejercicio1\\wwwroot\\js\\chat.js",
@@ -43,7 +60,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\diego.fernandez\\Documents\\GitHub\\Desarrollo-de-Interfaces\\Unidad9\\Ejercicio1\\Ejercicio1\\Pages\\Index.cshtml",
               "RelativeDocumentMoniker": "Ejercicio1\\Pages\\Index.cshtml",
@@ -51,12 +68,11 @@
               "RelativeToolTip": "Ejercicio1\\Pages\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-01-20T12:39:02.421Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-20T12:39:02.421Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ChatHub.cs",
               "DocumentMoniker": "C:\\Users\\diego.fernandez\\Documents\\GitHub\\Desarrollo-de-Interfaces\\Unidad9\\Ejercicio1\\Ejercicio1\\SignalRChat\\Hubs\\ChatHub.cs",
               "RelativeDocumentMoniker": "Ejercicio1\\SignalRChat\\Hubs\\ChatHub.cs",
@@ -64,12 +80,11 @@
               "RelativeToolTip": "Ejercicio1\\SignalRChat\\Hubs\\ChatHub.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-20T12:38:31.604Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-20T12:38:31.604Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "clsMensajeUsuario.cs",
               "DocumentMoniker": "C:\\Users\\diego.fernandez\\Documents\\GitHub\\Desarrollo-de-Interfaces\\Unidad9\\Ejercicio1\\Ejercicio1\\Domain\\Entities\\clsMensajeUsuario.cs",
               "RelativeDocumentMoniker": "Ejercicio1\\Domain\\Entities\\clsMensajeUsuario.cs",
@@ -77,8 +92,7 @@
               "RelativeToolTip": "Ejercicio1\\Domain\\Entities\\clsMensajeUsuario.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-20T12:35:56.655Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-20T12:35:56.655Z"
             }
           ]
         }

@@ -1,10 +1,10 @@
 import { makeAutoObservable } from 'mobx';
 import { container } from '../../di/container';
 import { TYPES } from '../../di/types';
-import { IUseCaseJuego } from '../../domain/interfaces/useCases/IUseCaseJuego';
-import { clsPartida } from '../../domain/entities/clsPartida';
 import { clsJugador } from '../../domain/entities/clsJugador';
+import { clsPartida } from '../../domain/entities/clsPartida';
 import { clsTablero } from '../../domain/entities/clsTablero';
+import { IUseCaseJuego } from '../../domain/interfaces/useCases/IUseCaseJuego';
 
 export class PartidaViewModel {
     private useCase: IUseCaseJuego;

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { observer } from 'mobx-react-lite';
-import { PartidaViewModel } from '../presentation/viewmodels/PartidaViewModel';
 import { useRouter } from 'expo-router';
+import { observer } from 'mobx-react-lite';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { PartidaViewModel } from '../presentation/viewmodels/PartidaViewModel';
 
 const GameScreen = observer(() => {
     const [viewModel] = useState(() => new PartidaViewModel());

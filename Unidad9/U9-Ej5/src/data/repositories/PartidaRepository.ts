@@ -1,8 +1,8 @@
-import { injectable, inject } from 'inversify';
+import { inject, injectable } from 'inversify';
 import 'reflect-metadata';
+import { TYPES } from '../../di/types';
 import { IPartidaRepository } from '../../domain/interfaces/repositories/IPartidaRepository';
 import { SignalRConnection } from '../datasources/signalr/SignalRConnection';
-import { TYPES } from '../../di/types';
 
 @injectable()
 export class PartidaRepository implements IPartidaRepository {
