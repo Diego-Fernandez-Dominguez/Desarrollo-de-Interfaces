@@ -1,4 +1,4 @@
-import { HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
+import { HttpTransportType, HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 import { injectable } from 'inversify';
 import 'reflect-metadata';
 
@@ -10,7 +10,10 @@ export class SignalRConnection {
 
     async connect(): Promise<void> {
         this.connection = new HubConnectionBuilder()
-            .withUrl(this.url)
+            .withUrl(this.url, {
+                skipNegotiation: true,
+                transport: HttpTransportType.WebSockets, // Importante
+  })
             .configureLogging(LogLevel.Information)
             .withAutomaticReconnect()
             .build();
