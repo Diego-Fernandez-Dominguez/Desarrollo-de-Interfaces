@@ -22,6 +22,8 @@ const GameScreen = observer(() => {
 
     const renderCasilla = (fila: number, columna: number) => {
         const valor = viewModel.partida.tablero.casillas[fila][columna];
+        const colorSimbolo = valor === 'X' ? '#FF0000' : '#007AFF';
+        
         return (
             <TouchableOpacity
                 key={`${fila}-${columna}`}
@@ -29,14 +31,21 @@ const GameScreen = observer(() => {
                 onPress={() => viewModel.realizarJugada(fila, columna)}
                 disabled={viewModel.partida.tablero.estado !== 'jugando'}
             >
-                <Text style={styles.simbolo}>{valor || ''}</Text>
+                <Text style={[styles.simbolo, { color: colorSimbolo }]}>
+                    {valor || ''}
+                </Text>
             </TouchableOpacity>
         );
     };
 
+    // Determinar si es un mensaje de desconexión
+    const esMensajeDesconexion = viewModel.mensaje.toLowerCase().includes('desconectado');
+
     return (
         <View style={styles.container}>
-            <Text style={styles.mensaje}>{viewModel.mensaje}</Text>
+            <Text style={[styles.mensaje, esMensajeDesconexion && styles.mensajeDesconexion]}>
+                {viewModel.mensaje}
+            </Text>
             
             <View style={styles.tablero}>
                 {[0, 1, 2].map(fila => (
@@ -79,6 +88,10 @@ const styles = StyleSheet.create({
         marginBottom: 30,
         color: '#333',
     },
+    mensajeDesconexion: {
+        fontSize: 18,
+        fontWeight: 'normal',
+    },
     tablero: {
         borderWidth: 2,
         borderColor: '#000',
@@ -98,7 +111,6 @@ const styles = StyleSheet.create({
     simbolo: {
         fontSize: 48,
         fontWeight: 'bold',
-        color: '#007AFF',
     },
     simboloJugador: {
         fontSize: 20,
